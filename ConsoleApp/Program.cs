@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace advent_of_code_2020
+namespace ConsoleApp
 {
     class Program
     {
