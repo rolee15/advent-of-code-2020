@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ConsoleApp.Interfaces;
 
@@ -8,6 +9,8 @@ namespace ConsoleApp.Solutions
         public IEnumerable<int> Numbers { get; }
         public DayOneSolution(int[] ints)
         {
+            if (ints.Length == 0)
+                throw new ArgumentException();
             Numbers = new List<int>(ints);
         }
 
