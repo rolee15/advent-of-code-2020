@@ -16,6 +16,7 @@ namespace ConsoleApp
         {
             ConfigureProgram();
             SolveAndPrintDayOne();
+            SolveAndPrintDayTwo();
         }
 
         private static void ConfigureProgram()
@@ -28,6 +29,12 @@ namespace ConsoleApp
         {
             System.Console.WriteLine("--- Day 1: Report Repair --- Part 1");
             System.Console.WriteLine("Solution: {0}", _manager.SolveDayOne());
+        }
+        
+        private static void SolveAndPrintDayTwo()
+        {
+            System.Console.WriteLine("--- Day 1: Report Repair --- Part 2");
+            System.Console.WriteLine("Solution: {0}", _manager.SolveDayTwo());
         }
     }
 }

@@ -30,7 +30,7 @@ namespace ConsoleApp.Solutions
         ///     and return their product.</summary>
         public int GetFirstResult()
         {
-            Dictionary<int, int> visited = new Dictionary<int, int>();
+            var visited = new Dictionary<int, int>();
             foreach (var item in Numbers)
             {
                 if (visited.ContainsKey(item))
@@ -62,6 +62,32 @@ namespace ConsoleApp.Solutions
             }
 
             return res;
+        }
+
+        /// <summary>Find three numbers with sum 2020, 
+        ///     and return their product.</summary>
+        public int GetSecondResult()
+        {
+            var visited = new Dictionary<int, (int, int)>();
+            for (int i = 0; i < Numbers.Count; i++)
+            {
+                for (int j = i + 1; j < Numbers.Count; j++)
+                {
+                    int a = Numbers[i];
+                    int b = Numbers[j];
+                    if (visited.ContainsKey(a))
+                        return a * visited[a].Item1 * visited[a].Item2;
+                    else if (visited.ContainsKey(b))
+                        return b * visited[b].Item1 * visited[b].Item2;
+                    else
+                    {
+                        int sum = 2020 - a - b;
+                        if (!visited.ContainsKey(sum))
+                            visited.Add(sum, (a, b));
+                    }
+                }
+            }
+            return 0;
         }
     }
 }

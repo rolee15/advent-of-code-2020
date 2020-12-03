@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Solutions;
@@ -7,17 +8,25 @@ namespace ConsoleApp.Managers
     internal class SolutionManager : ISolutionManager
     {
         private readonly IInputFileRepository _inputFileRepository;
+        private IEnumerable<int> _input;
 
         public SolutionManager(IInputFileRepository inputFileRepository)
         {
-            this._inputFileRepository = inputFileRepository;
+            _inputFileRepository = inputFileRepository;
         }
 
         public int SolveDayOne()
         {
-            var input = _inputFileRepository.GetDayOneInput();
-            var solution = DayOneSolution.FromList(input.ToList());
+            _input ??= _inputFileRepository.GetDayOneInput();
+            var solution = DayOneSolution.FromList(_input.ToList());
             return solution.GetFirstResult(true);
+        }
+
+        public int SolveDayTwo()
+        {
+            _input ??= _inputFileRepository.GetDayOneInput();
+            var solution = DayOneSolution.FromList(_input.ToList());
+            return solution.GetSecondResult();
         }
     }
 }
