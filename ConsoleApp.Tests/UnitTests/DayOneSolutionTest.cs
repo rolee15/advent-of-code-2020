@@ -47,7 +47,7 @@ namespace ConsoleApp.Tests.UnitTests
             var x = dayOne.GetResult();
 
             //Then
-            //Assert.Equal(1001 * 1019, x);
+            Assert.Equal(1001 * 1019, x);
         }
     }
 }
