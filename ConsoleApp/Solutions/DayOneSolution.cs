@@ -19,6 +19,11 @@ namespace ConsoleApp.Solutions
             return new DayOneSolution(ints);
         }
 
+        public static DayOneSolution FromList(List<int> list)
+        {
+            return new DayOneSolution(list.ToArray());
+        }
+
         /// <summary>Find two numbers with sum 2020, 
         ///     and return their product.</summary>
         public int GetResult()
