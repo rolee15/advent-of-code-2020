@@ -50,6 +50,7 @@ namespace ConsoleApp.Tests.UnitTests
             Assert.Equal(1001 * 1019, x);
         }
 
+        [Fact]
         public void GetSecondResultTest()
         {
             //Given
