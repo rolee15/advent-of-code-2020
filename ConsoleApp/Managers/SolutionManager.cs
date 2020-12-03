@@ -4,7 +4,7 @@ using ConsoleApp.Solutions;
 
 namespace ConsoleApp.Managers
 {
-    internal class SolutionManager
+    internal class SolutionManager : ISolutionManager
     {
         private readonly IInputFileRepository _inputFileRepository;
 
