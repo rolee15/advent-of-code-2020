@@ -37,17 +37,45 @@ namespace ConsoleApp.Tests.UnitTests
         }
 
         [Fact]
-        public void GetResultTest()
+        public void GetFirstResultTest()
         {
             //Given
-            int[] ints = { 1001, 1002, 1003, 1004, 1019 };
+            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
             var dayOne = new DayOneSolution(ints);
 
             //When
-            var x = dayOne.GetResult();
+            var x = dayOne.GetFirstResult();
 
             //Then
             Assert.Equal(1001 * 1019, x);
+        }
+
+        [Fact]
+        public void GetSecondResultTest()
+        {
+            //Given
+            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
+            var dayOne = new DayOneSolution(ints);
+
+            //When
+            var x = dayOne.GetSecondResult();
+
+            //Then
+            Assert.Equal(672 * 673 * 675, x);
+        }
+
+        [Fact]
+        public void GetSecondResultMultipleGood()
+        {
+            //Given
+            int[] ints = { 1, 2, 3, 4, 5, 2015};
+            var dayOne = new DayOneSolution(ints);
+
+            //When
+            var x = dayOne.GetSecondResult();
+
+            //Then
+            Assert.Equal(1 * 4 * 2015, x);
         }
     }
 }

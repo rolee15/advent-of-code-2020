@@ -28,9 +28,9 @@ namespace ConsoleApp.Solutions
 
         /// <summary>Find two numbers with sum 2020, 
         ///     and return their product.</summary>
-        public int GetResult()
+        public int GetFirstResult()
         {
-            Dictionary<int, int> visited = new Dictionary<int, int>();
+            var visited = new Dictionary<int, int>();
             foreach (var item in Numbers)
             {
                 if (visited.ContainsKey(item))
@@ -41,27 +41,30 @@ namespace ConsoleApp.Solutions
             return 0;
         }
 
-        public int GetResult(bool isMeasuring)
+        /// <summary>Find three numbers with sum 2020, 
+        ///     and return their product.</summary>
+        public int GetSecondResult()
         {
-            int res;
-            if (isMeasuring)
+            var visited = new Dictionary<int, (int, int)>();
+            for (int i = 0; i < Numbers.Count; i++)
             {
-                Stopwatch stopWatch = new Stopwatch();
-                stopWatch.Start();
-                res = GetResult();
-                stopWatch.Stop();
-                // Get the elapsed time as a TimeSpan value.
-                TimeSpan ts = stopWatch.Elapsed;
-
-                Console.WriteLine("RunTime {0}ms", ts.Milliseconds);
-                Console.WriteLine("Ticks {0}", ts.Ticks);
+                for (int j = i + 1; j < Numbers.Count; j++)
+                {
+                    int a = Numbers[i];
+                    int b = Numbers[j];
+                    if (visited.ContainsKey(a))
+                        return a * visited[a].Item1 * visited[a].Item2;
+                    else if (visited.ContainsKey(b))
+                        return b * visited[b].Item1 * visited[b].Item2;
+                    else
+                    {
+                        int sum = 2020 - a - b;
+                        if (!visited.ContainsKey(sum))
+                            visited.Add(sum, (a, b));
+                    }
+                }
             }
-            else
-            {
-                res = GetResult();
-            }
-
-            return res;
+            return 0;
         }
     }
 }

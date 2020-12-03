@@ -1,5 +1,4 @@
-﻿using System;
-using ConsoleApp.Adapters;
+﻿using ConsoleApp.Adapters;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Managers;
 using ConsoleApp.Repositories;
@@ -11,7 +10,7 @@ namespace ConsoleApp
         private static IFileAdapter _fileAdapter;
         private static IInputFileRepository _inputFileRepository;
         private static SolutionManager _manager;
-        
+
         static void Main(string[] args)
         {
             ConfigureProgram();
@@ -24,10 +23,22 @@ namespace ConsoleApp
             _inputFileRepository = new InputFileRepository(_fileAdapter);
             _manager = new SolutionManager(_inputFileRepository);
         }
+
         private static void SolveAndPrintDayOne()
         {
+            _manager.SolveDayOne();
+            PrintDayOne();
+        }
+
+        private static void PrintDayOne()
+        {
             System.Console.WriteLine("--- Day 1: Report Repair --- Part 1");
-            System.Console.WriteLine("Solution: {0}", _manager.SolveDayOne());
+            System.Console.WriteLine("Solution: {0}", _manager.FirstResult);
+
+            System.Console.WriteLine("--- Day 1: Report Repair --- Part 2");
+            System.Console.WriteLine("Solution: {0}", _manager.SecondResult);
+
+            System.Console.WriteLine("Elapsed time: {0}ms", _manager.TotalRunTimeInMilliseconds);
         }
     }
 }
