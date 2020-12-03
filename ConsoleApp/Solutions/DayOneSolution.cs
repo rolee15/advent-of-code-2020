@@ -41,29 +41,6 @@ namespace ConsoleApp.Solutions
             return 0;
         }
 
-        public int GetFirstResult(bool isMeasuring)
-        {
-            int res;
-            if (isMeasuring)
-            {
-                Stopwatch stopWatch = new Stopwatch();
-                stopWatch.Start();
-                res = GetFirstResult();
-                stopWatch.Stop();
-                // Get the elapsed time as a TimeSpan value.
-                TimeSpan ts = stopWatch.Elapsed;
-
-                Console.WriteLine("RunTime {0}ms", ts.Milliseconds);
-                Console.WriteLine("Ticks {0}", ts.Ticks);
-            }
-            else
-            {
-                res = GetFirstResult();
-            }
-
-            return res;
-        }
-
         /// <summary>Find three numbers with sum 2020, 
         ///     and return their product.</summary>
         public int GetSecondResult()
