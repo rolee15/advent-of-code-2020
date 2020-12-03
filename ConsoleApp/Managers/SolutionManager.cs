@@ -17,7 +17,7 @@ namespace ConsoleApp.Managers
         {
             var input = _inputFileRepository.GetDayOneInput();
             var solution = DayOneSolution.FromList(input.ToList());
-            return solution.GetResult(true);
+            return solution.GetFirstResult(true);
         }
     }
 }

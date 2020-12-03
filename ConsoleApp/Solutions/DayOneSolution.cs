@@ -28,7 +28,7 @@ namespace ConsoleApp.Solutions
 
         /// <summary>Find two numbers with sum 2020, 
         ///     and return their product.</summary>
-        public int GetResult()
+        public int GetFirstResult()
         {
             Dictionary<int, int> visited = new Dictionary<int, int>();
             foreach (var item in Numbers)
@@ -41,14 +41,14 @@ namespace ConsoleApp.Solutions
             return 0;
         }
 
-        public int GetResult(bool isMeasuring)
+        public int GetFirstResult(bool isMeasuring)
         {
             int res;
             if (isMeasuring)
             {
                 Stopwatch stopWatch = new Stopwatch();
                 stopWatch.Start();
-                res = GetResult();
+                res = GetFirstResult();
                 stopWatch.Stop();
                 // Get the elapsed time as a TimeSpan value.
                 TimeSpan ts = stopWatch.Elapsed;
@@ -58,7 +58,7 @@ namespace ConsoleApp.Solutions
             }
             else
             {
-                res = GetResult();
+                res = GetFirstResult();
             }
 
             return res;
