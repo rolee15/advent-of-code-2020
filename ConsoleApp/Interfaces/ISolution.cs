@@ -2,7 +2,8 @@ namespace ConsoleApp.Interfaces
 {
     internal interface ISolution
     {
-        int GetFirstResult();
-        int GetSecondResult();
+        int FirstResult { get; }
+        int SecondResult { get; }
+        void Solve();
     }
 }

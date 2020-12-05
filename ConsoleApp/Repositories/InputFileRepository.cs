@@ -3,7 +3,7 @@ using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Repositories
 {
-    class InputFileRepository : IInputFileRepository
+    internal sealed class InputFileRepository : IInputFileRepository
     {
         IFileAdapter _fileAdapter;
         public InputFileRepository(IFileAdapter fileAdapter)
@@ -20,8 +20,7 @@ namespace ConsoleApp.Repositories
 
         public IEnumerable<int> GetDayOneInput()
         {
-            var numbers = GetInput("day1.txt");
-            return numbers;
+            return GetInput("day1.txt");
         }
     }
 }
