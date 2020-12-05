@@ -11,12 +11,12 @@ namespace ConsoleApp
         private static IConsoleAdapter _consoleAdapter;
         private static IFileAdapter _fileAdapter;
         private static IInputFileRepository _inputFileRepository;
-        private static SolutionManager _manager;
+        private static SolutionDayOneManager _manager;
 
         static void Main(string[] args)
         {
             ConfigureProgram();
-            _manager.SolveAndPrintDayOne();
+            _manager.SolveAndPrintSolution();
         }
 
         private static void ConfigureProgram()
@@ -24,7 +24,7 @@ namespace ConsoleApp
             _consoleAdapter = new ConsoleAdapter();
             _fileAdapter = new FileAdapter("./input");
             _inputFileRepository = new InputFileRepository(_fileAdapter);
-            _manager = new SolutionManager(_inputFileRepository, _consoleAdapter);
+            _manager = new SolutionDayOneManager(_inputFileRepository, _consoleAdapter);
         }
 
         

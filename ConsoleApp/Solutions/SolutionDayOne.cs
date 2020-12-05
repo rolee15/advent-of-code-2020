@@ -1,49 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Solutions
 {
-    public class DayOneSolution : ISolution
+    public sealed class SolutionDayOne : SolutionBase
     {
         public List<int> Numbers { get; }
-        public DayOneSolution(int[] ints)
-        {
-            if (ints.Length == 0)
-                throw new ArgumentException();
-            Numbers = new List<int>(ints);
-        }
-
-        public static DayOneSolution FromArray(int[] ints)
-        {
-            return new DayOneSolution(ints);
-        }
-
-        public static DayOneSolution FromList(List<int> list)
-        {
-            return new DayOneSolution(list.ToArray());
-        }
 
         /// <summary>Find two numbers with sum 2020, 
         ///     and return their product.</summary>
-        public int GetFirstResult()
+        protected override void SolvePartOne()
         {
             var visited = new Dictionary<int, int>();
             foreach (var item in Numbers)
             {
                 if (visited.ContainsKey(item))
-                    return item * visited[item];
+                    FirstResult = item * visited[item];
                 else
                     visited.Add(2020 - item, item);
             }
-            return 0;
         }
 
         /// <summary>Find three numbers with sum 2020, 
         ///     and return their product.</summary>
-        public int GetSecondResult()
+        protected override void SolvePartTwo()
         {
             var visited = new Dictionary<int, (int, int)>();
             for (int i = 0; i < Numbers.Count; i++)
@@ -53,9 +33,9 @@ namespace ConsoleApp.Solutions
                     int a = Numbers[i];
                     int b = Numbers[j];
                     if (visited.ContainsKey(a))
-                        return a * visited[a].Item1 * visited[a].Item2;
+                        SecondResult = a * visited[a].Item1 * visited[a].Item2;
                     else if (visited.ContainsKey(b))
-                        return b * visited[b].Item1 * visited[b].Item2;
+                        SecondResult = b * visited[b].Item1 * visited[b].Item2;
                     else
                     {
                         int sum = 2020 - a - b;
@@ -64,7 +44,23 @@ namespace ConsoleApp.Solutions
                     }
                 }
             }
-            return 0;
+        }
+
+        public SolutionDayOne(int[] ints)
+        {
+            if (ints.Length == 0)
+                throw new ArgumentException();
+            Numbers = new List<int>(ints);
+        }
+
+        public static SolutionDayOne FromArray(int[] ints)
+        {
+            return new SolutionDayOne(ints);
+        }
+
+        public static SolutionDayOne FromList(List<int> list)
+        {
+            return new SolutionDayOne(list.ToArray());
         }
     }
 }
