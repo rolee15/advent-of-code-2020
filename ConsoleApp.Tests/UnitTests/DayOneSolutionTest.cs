@@ -44,10 +44,10 @@ namespace ConsoleApp.Tests.UnitTests
             var dayOne = new SolutionDayOne(ints);
 
             //When
-            var x = dayOne.FirstResult;
+            dayOne.Solve();
 
             //Then
-            Assert.Equal(1001 * 1019, x);
+            Assert.Equal(1001 * 1019, dayOne.FirstResult);
         }
 
         [Fact]
@@ -58,10 +58,10 @@ namespace ConsoleApp.Tests.UnitTests
             var dayOne = new SolutionDayOne(ints);
 
             //When
-            var x = dayOne.SecondResult;
+            dayOne.Solve();
 
             //Then
-            Assert.Equal(672 * 673 * 675, x);
+            Assert.Equal(672 * 673 * 675, dayOne.SecondResult);
         }
 
         [Fact]
@@ -72,10 +72,10 @@ namespace ConsoleApp.Tests.UnitTests
             var dayOne = new SolutionDayOne(ints);
 
             //When
-            var x = dayOne.SecondResult;
+            dayOne.Solve();
 
             //Then
-            Assert.Equal(1 * 4 * 2015, x);
+            Assert.Equal(1 * 4 * 2015, dayOne.SecondResult);
         }
     }
 }
