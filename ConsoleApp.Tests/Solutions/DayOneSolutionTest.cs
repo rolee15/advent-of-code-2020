@@ -18,23 +18,31 @@ namespace ConsoleApp.Tests.Solutions
         }
 
         [Fact]
-        public void ArrayFactoryMethodWithEmptyListThrowsArgumentException()
+        public void ArrayFactoryMethodWithIncorrectListsThrowsArgumentException()
         {
             //Given
-            int[] array = { };
+            int[] array0 = { };
+            int[] array1 = {1};
+            int[] array2 = {1, 2};
 
             //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array0));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array1));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array2));
         }
 
         [Fact]
-        public void ListFactoryMethodWithEmptyListThrowsArgumentException()
+        public void ListFactoryMethodWithIncorrectListsThrowsArgumentException()
         {
             //Given
-            var list = new List<int>();
+            var list0 = new List<int>();
+            var list1 = new List<int> {1};
+            var list2 = new List<int> {2};
 
             //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list0));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list1));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list2));
         }
 
         [Fact]

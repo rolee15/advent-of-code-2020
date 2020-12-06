@@ -11,7 +11,7 @@ namespace ConsoleApp
         private static IConsoleAdapter _consoleAdapter;
         private static IFileAdapter _fileAdapter;
         private static IInputFileRepository _inputFileRepository;
-        private static SolutionDayOneManager _manager;
+        private static ISolutionManager _manager;
 
         private static Results Results { get; set; }
 

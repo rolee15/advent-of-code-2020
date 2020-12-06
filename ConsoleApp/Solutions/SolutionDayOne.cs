@@ -7,12 +7,12 @@ namespace ConsoleApp.Solutions
     {
         public SolutionDayOne(int[] ints)
         {
-            if (ints.Length == 0)
-                throw new ArgumentException();
+            if (ints.Length < 3)
+                throw new ArgumentException("Number of arguments less than three");
             Numbers = new List<int>(ints);
         }
 
-        public List<int> Numbers { get; }
+        private List<int> Numbers { get; }
 
         /// <summary>
         ///     Find two numbers with sum 2020,
