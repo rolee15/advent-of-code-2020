@@ -9,8 +9,8 @@ namespace ConsoleApp.Managers
         public SolutionDayOneManager(
             IInputFileRepository inputFileRepository,
             IConsoleAdapter consoleAdapter) : base(
-                inputFileRepository,
-                consoleAdapter)
+            inputFileRepository,
+            consoleAdapter)
         {
         }
 
@@ -19,7 +19,5 @@ namespace ConsoleApp.Managers
             var input = InputFileRepository.GetDayOneInput();
             Solution = SolutionDayOne.FromList(input.ToList());
         }
-
-
     }
 }

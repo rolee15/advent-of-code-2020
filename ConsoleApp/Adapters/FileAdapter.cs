@@ -3,9 +3,9 @@ using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Adapters
 {
-    class FileAdapter : IFileAdapter
+    internal class FileAdapter : IFileAdapter
     {
-        private string _folderPath;
+        private readonly string _folderPath;
 
         public FileAdapter(string folderPath)
         {
@@ -14,7 +14,7 @@ namespace ConsoleApp.Adapters
 
         public string[] GetFile(string fileName)
         {
-            string path = Path.Combine(_folderPath, fileName);
+            var path = Path.Combine(_folderPath, fileName);
             return File.ReadAllLines(path);
         }
     }

@@ -26,11 +26,12 @@ namespace ConsoleApp.Tests.UnitTests
             //Then
             Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array));
         }
+
         [Fact]
         public void ListFactoryMethodWithEmptyListThrowsArgumentException()
         {
             //Given
-            List<int> list = new List<int>();
+            var list = new List<int>();
 
             //Then
             Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list));
@@ -40,7 +41,7 @@ namespace ConsoleApp.Tests.UnitTests
         public void GetFirstResultTest()
         {
             //Given
-            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
+            int[] ints = {672, 673, 675, 1001, 1002, 1003, 1004, 1019};
             var dayOne = new SolutionDayOne(ints);
 
             //When
@@ -54,7 +55,7 @@ namespace ConsoleApp.Tests.UnitTests
         public void GetSecondResultTest()
         {
             //Given
-            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
+            int[] ints = {672, 673, 675, 1001, 1002, 1003, 1004, 1019};
             var dayOne = new SolutionDayOne(ints);
 
             //When
@@ -68,7 +69,7 @@ namespace ConsoleApp.Tests.UnitTests
         public void GetSecondResultMultipleGood()
         {
             //Given
-            int[] ints = { 1, 2, 3, 4, 5, 2015};
+            int[] ints = {1, 2, 3, 4, 5, 2015};
             var dayOne = new SolutionDayOne(ints);
 
             //When

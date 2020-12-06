@@ -3,7 +3,7 @@ using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Adapters
 {
-    class ConsoleAdapter : IConsoleAdapter
+    internal class ConsoleAdapter : IConsoleAdapter
     {
         public void Write(string msg)
         {

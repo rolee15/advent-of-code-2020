@@ -5,10 +5,16 @@ namespace ConsoleApp.Repositories
 {
     internal sealed class InputFileRepository : IInputFileRepository
     {
-        IFileAdapter _fileAdapter;
+        private readonly IFileAdapter _fileAdapter;
+
         public InputFileRepository(IFileAdapter fileAdapter)
         {
             _fileAdapter = fileAdapter;
+        }
+
+        public IEnumerable<int> GetDayOneInput()
+        {
+            return GetInput("day1.txt");
         }
 
         private IEnumerable<int> GetInput(string fileName)
@@ -16,11 +22,6 @@ namespace ConsoleApp.Repositories
             var lines = _fileAdapter.GetFile(fileName);
             foreach (var line in lines)
                 yield return int.Parse(line);
-        }
-
-        public IEnumerable<int> GetDayOneInput()
-        {
-            return GetInput("day1.txt");
         }
     }
 }
