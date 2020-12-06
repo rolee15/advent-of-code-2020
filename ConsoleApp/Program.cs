@@ -1,5 +1,4 @@
-﻿using System;
-using ConsoleApp.Adapters;
+﻿using ConsoleApp.Adapters;
 using ConsoleApp.DTO;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Managers;
@@ -7,7 +6,7 @@ using ConsoleApp.Repositories;
 
 namespace ConsoleApp
 {
-    class Program
+    internal class Program
     {
         private static IConsoleAdapter _consoleAdapter;
         private static IFileAdapter _fileAdapter;
@@ -16,7 +15,7 @@ namespace ConsoleApp
 
         private static Results Results { get; set; }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             ConfigureProgram();
             GetResults();
@@ -44,9 +43,7 @@ namespace ConsoleApp
             _consoleAdapter = new ConsoleAdapter();
             _fileAdapter = new FileAdapter("./input");
             _inputFileRepository = new InputFileRepository(_fileAdapter);
-            _manager = new SolutionDayOneManager(_inputFileRepository, _consoleAdapter);
+            _manager = new SolutionDayOneManager(_inputFileRepository);
         }
-
-
     }
 }

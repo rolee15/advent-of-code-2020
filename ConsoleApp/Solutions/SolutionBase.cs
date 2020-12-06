@@ -2,7 +2,7 @@ using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Solutions
 {
-    public abstract class SolutionBase: ISolution
+    public abstract class SolutionBase : ISolution
     {
         public void Solve()
         {
@@ -10,11 +10,11 @@ namespace ConsoleApp.Solutions
             SolvePartTwo();
         }
 
+        public int FirstResult { get; protected set; }
+        public int SecondResult { get; protected set; }
+
         protected abstract void SolvePartTwo();
 
         protected abstract void SolvePartOne();
-        
-        public int FirstResult { get; protected set; }
-        public int SecondResult { get; protected set; }
     }
 }

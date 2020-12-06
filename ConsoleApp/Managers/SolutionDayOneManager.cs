@@ -7,10 +7,8 @@ namespace ConsoleApp.Managers
     internal sealed class SolutionDayOneManager : SolutionManagerBase
     {
         public SolutionDayOneManager(
-            IInputFileRepository inputFileRepository,
-            IConsoleAdapter consoleAdapter) : base(
-                inputFileRepository,
-                consoleAdapter)
+            IInputFileRepository inputFileRepository) : base(
+            inputFileRepository)
         {
         }
 
@@ -19,7 +17,5 @@ namespace ConsoleApp.Managers
             var input = InputFileRepository.GetDayOneInput();
             Solution = SolutionDayOne.FromList(input.ToList());
         }
-
-
     }
 }
