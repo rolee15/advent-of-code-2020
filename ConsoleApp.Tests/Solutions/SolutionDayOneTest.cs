@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ConsoleApp.Tests.Solutions
 {
-    public class DayOneSolutionTest
+    public class SolutionDayOneTest
     {
         [Fact]
         public void InitializingWithEmptyListThrowsArgumentException()
@@ -22,8 +22,8 @@ namespace ConsoleApp.Tests.Solutions
         {
             //Given
             int[] array0 = { };
-            int[] array1 = {1};
-            int[] array2 = {1, 2};
+            int[] array1 = { 1 };
+            int[] array2 = { 1, 2 };
 
             //Then
             Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array0));
@@ -36,8 +36,8 @@ namespace ConsoleApp.Tests.Solutions
         {
             //Given
             var list0 = new List<int>();
-            var list1 = new List<int> {1};
-            var list2 = new List<int> {2};
+            var list1 = new List<int> { 1 };
+            var list2 = new List<int> { 2 };
 
             //Then
             Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list0));
@@ -49,7 +49,7 @@ namespace ConsoleApp.Tests.Solutions
         public void GetFirstResultTest()
         {
             //Given
-            int[] ints = {672, 673, 675, 1001, 1002, 1003, 1004, 1019};
+            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
             var dayOne = new SolutionDayOne(ints);
 
             //When
@@ -63,7 +63,7 @@ namespace ConsoleApp.Tests.Solutions
         public void GetSecondResultTest()
         {
             //Given
-            int[] ints = {672, 673, 675, 1001, 1002, 1003, 1004, 1019};
+            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
             var dayOne = new SolutionDayOne(ints);
 
             //When
@@ -77,7 +77,7 @@ namespace ConsoleApp.Tests.Solutions
         public void GetSecondResultMultipleGood()
         {
             //Given
-            int[] ints = {1, 2, 3, 4, 5, 2015};
+            int[] ints = { 1, 2, 3, 4, 5, 2015 };
             var dayOne = new SolutionDayOne(ints);
 
             //When
