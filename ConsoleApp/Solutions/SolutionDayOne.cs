@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsoleApp.Solutions
 {
-    public sealed class SolutionDayOne : SolutionBase
+    internal sealed class SolutionDayOne : SolutionBase
     {
         public SolutionDayOne(int[] ints)
         {
