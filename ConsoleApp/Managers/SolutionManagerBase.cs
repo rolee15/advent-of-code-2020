@@ -15,7 +15,7 @@ namespace ConsoleApp.Managers
         }
 
         protected IInputFileRepository InputFileRepository { get; }
-        private Stopwatch StopWatch { get; set; }
+        private Stopwatch StopWatch { get; }
         protected ISolution Solution { get; set; }
         private Results Results { get; }
 
