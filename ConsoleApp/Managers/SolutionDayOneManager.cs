@@ -7,8 +7,7 @@ namespace ConsoleApp.Managers
     internal sealed class SolutionDayOneManager : SolutionManagerBase
     {
         public SolutionDayOneManager(
-            IInputFileRepository inputFileRepository,
-            IConsoleAdapter consoleAdapter) : base(
+            IInputFileRepository inputFileRepository) : base(
             inputFileRepository)
         {
         }

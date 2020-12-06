@@ -43,7 +43,7 @@ namespace ConsoleApp
             _consoleAdapter = new ConsoleAdapter();
             _fileAdapter = new FileAdapter("./input");
             _inputFileRepository = new InputFileRepository(_fileAdapter);
-            _manager = new SolutionDayOneManager(_inputFileRepository, _consoleAdapter);
+            _manager = new SolutionDayOneManager(_inputFileRepository);
         }
     }
 }
