@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ConsoleApp.Solutions;
 using Xunit;
 
-namespace ConsoleApp.Tests.UnitTests
+namespace ConsoleApp.Tests.Solutions
 {
     public class DayOneSolutionTest
     {
