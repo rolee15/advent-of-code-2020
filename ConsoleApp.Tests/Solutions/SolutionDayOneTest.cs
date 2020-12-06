@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using ConsoleApp.Solutions;
 using Xunit;
 
-namespace ConsoleApp.Tests.UnitTests
+namespace ConsoleApp.Tests.Solutions
 {
-    public class DayOneSolutionTest
+    public class SolutionDayOneTest
     {
         [Fact]
         public void InitializingWithEmptyListThrowsArgumentException()
@@ -18,30 +18,38 @@ namespace ConsoleApp.Tests.UnitTests
         }
 
         [Fact]
-        public void ArrayFactoryMethodWithEmptyListThrowsArgumentException()
+        public void ArrayFactoryMethodWithIncorrectListsThrowsArgumentException()
         {
             //Given
-            int[] array = { };
+            int[] array0 = { };
+            int[] array1 = { 1 };
+            int[] array2 = { 1, 2 };
 
             //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array0));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array1));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromArray(array2));
         }
 
         [Fact]
-        public void ListFactoryMethodWithEmptyListThrowsArgumentException()
+        public void ListFactoryMethodWithIncorrectListsThrowsArgumentException()
         {
             //Given
-            var list = new List<int>();
+            var list0 = new List<int>();
+            var list1 = new List<int> { 1 };
+            var list2 = new List<int> { 2 };
 
             //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list0));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list1));
+            Assert.Throws<ArgumentException>(() => SolutionDayOne.FromList(list2));
         }
 
         [Fact]
         public void GetFirstResultTest()
         {
             //Given
-            int[] ints = {672, 673, 675, 1001, 1002, 1003, 1004, 1019};
+            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
             var dayOne = new SolutionDayOne(ints);
 
             //When
@@ -55,7 +63,7 @@ namespace ConsoleApp.Tests.UnitTests
         public void GetSecondResultTest()
         {
             //Given
-            int[] ints = {672, 673, 675, 1001, 1002, 1003, 1004, 1019};
+            int[] ints = { 672, 673, 675, 1001, 1002, 1003, 1004, 1019 };
             var dayOne = new SolutionDayOne(ints);
 
             //When
@@ -69,7 +77,7 @@ namespace ConsoleApp.Tests.UnitTests
         public void GetSecondResultMultipleGood()
         {
             //Given
-            int[] ints = {1, 2, 3, 4, 5, 2015};
+            int[] ints = { 1, 2, 3, 4, 5, 2015 };
             var dayOne = new SolutionDayOne(ints);
 
             //When
