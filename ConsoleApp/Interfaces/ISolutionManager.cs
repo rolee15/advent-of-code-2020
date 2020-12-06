@@ -1,7 +1,9 @@
-namespace ConsoleApp.Managers
+using ConsoleApp.DTO;
+
+namespace ConsoleApp.Interfaces
 {
     internal interface ISolutionManager
     {
-        void SolveAndPrintSolution();
+        Results GetResults();
     }
 }

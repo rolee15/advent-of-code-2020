@@ -1,5 +1,6 @@
 ﻿using System;
 using ConsoleApp.Adapters;
+using ConsoleApp.DTO;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Managers;
 using ConsoleApp.Repositories;
@@ -13,10 +14,29 @@ namespace ConsoleApp
         private static IInputFileRepository _inputFileRepository;
         private static SolutionDayOneManager _manager;
 
+        private static Results Results { get; set; }
+
         static void Main(string[] args)
         {
             ConfigureProgram();
-            _manager.SolveAndPrintSolution();
+            GetResults();
+            PrintResults();
+        }
+
+        private static void GetResults()
+        {
+            Results = _manager.GetResults();
+        }
+
+        private static void PrintResults()
+        {
+            _consoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 1");
+            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 2");
+            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
         }
 
         private static void ConfigureProgram()
@@ -27,6 +47,6 @@ namespace ConsoleApp
             _manager = new SolutionDayOneManager(_inputFileRepository, _consoleAdapter);
         }
 
-        
+
     }
 }
