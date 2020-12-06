@@ -9,8 +9,7 @@ namespace ConsoleApp.Managers
         public SolutionDayOneManager(
             IInputFileRepository inputFileRepository,
             IConsoleAdapter consoleAdapter) : base(
-            inputFileRepository,
-            consoleAdapter)
+            inputFileRepository)
         {
         }
 

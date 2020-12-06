@@ -7,18 +7,15 @@ namespace ConsoleApp.Managers
     internal abstract class SolutionManagerBase : ISolutionManager
     {
         protected SolutionManagerBase(
-            IInputFileRepository inputFileRepository,
-            IConsoleAdapter consoleAdapter)
+            IInputFileRepository inputFileRepository)
         {
             InputFileRepository = inputFileRepository;
-            ConsoleAdapter = consoleAdapter;
             StopWatch = new Stopwatch();
             Results = new Results();
         }
 
         protected IInputFileRepository InputFileRepository { get; }
-        protected IConsoleAdapter ConsoleAdapter { get; }
-        protected Stopwatch StopWatch { get; set; }
+        private Stopwatch StopWatch { get; set; }
         protected ISolution Solution { get; set; }
         private Results Results { get; }
 
