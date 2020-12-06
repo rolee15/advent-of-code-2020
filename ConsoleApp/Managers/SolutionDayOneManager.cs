@@ -20,15 +20,6 @@ namespace ConsoleApp.Managers
             Solution = SolutionDayOne.FromList(input.ToList());
         }
 
-        protected override void PrintResults()
-        {
-            ConsoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 1");
-            ConsoleAdapter.WriteLine("Solution: {0}", Solution.FirstResult);
-            ConsoleAdapter.WriteLine();
-            ConsoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 2");
-            ConsoleAdapter.WriteLine("Solution: {0}", Solution.SecondResult);
-            ConsoleAdapter.WriteLine();
-            ConsoleAdapter.WriteLine("Elapsed time: {0}ms", StopWatch.Elapsed.TotalMilliseconds);
-        }
+
     }
 }
