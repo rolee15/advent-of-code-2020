@@ -18,7 +18,7 @@ jobs:
 
     env:
       Solution_Name: advent-of-code-2020.sln
-      Unit_Test_Project_Path: ConsoleApp.Tests\ConsoleApp.UnitTests.csproj
+      Unit_Test_Project_Path: ConsoleApp.UnitTests\ConsoleApp.UnitTests.csproj
 
     steps:
       - name: Checkout
