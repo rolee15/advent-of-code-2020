@@ -42,7 +42,8 @@ namespace ConsoleApp
             ConsoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 2");
             ConsoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
             ConsoleAdapter.WriteLine();
-            ConsoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
+            ConsoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);            
+            ConsoleAdapter.WriteLine();
         }
 
         private static void GetDayTwoResults()
@@ -52,10 +53,11 @@ namespace ConsoleApp
 
         private static void PrintDayTwoResults()
         {
-            ConsoleAdapter.WriteLine("Day 2: Password Philosophy --- Part 1");
+            ConsoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 1");
             ConsoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
             ConsoleAdapter.WriteLine();
             ConsoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
+            ConsoleAdapter.WriteLine();
         }
 
         private static void ConfigureProgram()

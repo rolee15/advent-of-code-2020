@@ -8,13 +8,14 @@ namespace ConsoleApp.IntegrationTests
 {
     public class IntegrationTest
     {
-        public IFileAdapter FileAdapter { get; set; }
-        public IInputFileRepository InputFileRepository { get; set; }
         public IntegrationTest()
         {
             FileAdapter = new FileAdapter(".");
             InputFileRepository = new InputFileRepository(FileAdapter);
         }
+
+        public IFileAdapter FileAdapter { get; set; }
+        public IInputFileRepository InputFileRepository { get; set; }
 
         [Fact]
         public void DayOne()

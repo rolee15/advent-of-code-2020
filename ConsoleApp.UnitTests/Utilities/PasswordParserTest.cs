@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using ConsoleApp.Utilities;
 using Xunit;
 
@@ -11,14 +9,14 @@ namespace ConsoleApp.UnitTests.Utilities
         public void ParseLowerBoundTest()
         {
             //Given
-            string line1 = "1-3 c: abcde";
-            string line2 = "1-3 b: 2-5 7-9";
-            string line3 = "13-9 c: ";
+            var line1 = "1-3 c: abcde";
+            var line2 = "1-3 b: 2-5 7-9";
+            var line3 = "13-9 c: ";
 
             //When
-            int lowerBound1 = PasswordParser.ParseLowerBound(line1);
-            int lowerBound2 = PasswordParser.ParseLowerBound(line2);
-            int lowerBound3 = PasswordParser.ParseLowerBound(line3);
+            var lowerBound1 = PasswordParser.ParseLowerBound(line1);
+            var lowerBound2 = PasswordParser.ParseLowerBound(line2);
+            var lowerBound3 = PasswordParser.ParseLowerBound(line3);
 
             //Then
             Assert.Equal(1, lowerBound1);
@@ -30,14 +28,14 @@ namespace ConsoleApp.UnitTests.Utilities
         public void ParseUpperBoundTest()
         {
             //Given
-            string line1 = "1-3 c: abcde";
-            string line2 = "1-3 b: 2-5 7-9";
-            string line3 = "13-9 c: ";
+            var line1 = "1-3 c: abcde";
+            var line2 = "1-3 b: 2-5 7-9";
+            var line3 = "13-9 c: ";
 
             //When
-            int upperBound1 = PasswordParser.ParseUpperBound(line1);
-            int upperBound2 = PasswordParser.ParseUpperBound(line2);
-            int upperBound3 = PasswordParser.ParseUpperBound(line3);
+            var upperBound1 = PasswordParser.ParseUpperBound(line1);
+            var upperBound2 = PasswordParser.ParseUpperBound(line2);
+            var upperBound3 = PasswordParser.ParseUpperBound(line3);
 
             //Then
             Assert.Equal(3, upperBound1);
@@ -49,14 +47,14 @@ namespace ConsoleApp.UnitTests.Utilities
         public void ParseCharTest()
         {
             //Given
-            string line1 = "1-3 c: abcde";
-            string line2 = "1-3 b: 2-5 7-9";
-            string line3 = "13-9 c: ";
+            var line1 = "1-3 c: abcde";
+            var line2 = "1-3 b: 2-5 7-9";
+            var line3 = "13-9 c: ";
 
             //When
-            string char1 = PasswordParser.ParseCharacter(line1);
-            string char2 = PasswordParser.ParseCharacter(line2);
-            string char3 = PasswordParser.ParseCharacter(line3);
+            var char1 = PasswordParser.ParseCharacter(line1);
+            var char2 = PasswordParser.ParseCharacter(line2);
+            var char3 = PasswordParser.ParseCharacter(line3);
 
             //Then
             Assert.Equal("c", char1);
@@ -68,14 +66,14 @@ namespace ConsoleApp.UnitTests.Utilities
         public void ParsePasswordTest()
         {
             //Given
-            string line1 = "1-3 c: abcde";
-            string line2 = "1-3 b: 2-5 7-9";
-            string line3 = "13-9 c: ";
+            var line1 = "1-3 c: abcde";
+            var line2 = "1-3 b: 2-5 7-9";
+            var line3 = "13-9 c: ";
 
             //When
-            string pass1 = PasswordParser.ParsePassword(line1);
-            string pass2 = PasswordParser.ParsePassword(line2);
-            string pass3 = PasswordParser.ParsePassword(line3);
+            var pass1 = PasswordParser.ParsePassword(line1);
+            var pass2 = PasswordParser.ParsePassword(line2);
+            var pass3 = PasswordParser.ParsePassword(line3);
 
             //Then
             Assert.Equal("abcde", pass1);
