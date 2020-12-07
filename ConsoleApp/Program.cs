@@ -8,12 +8,12 @@ namespace ConsoleApp
 {
     internal class Program
     {
-        private static IConsoleAdapter ConsoleAdapter;
-        private static IFileAdapter FileAdapter;
-        private static IInputFileRepository InputFileRepository;
-        private static SolutionDayOneManager DayOneManager { get; set; }
-        public static SolutionDayTwoManager DayTwoManager { get; private set; }
-        private static Results Results { get; set; }
+        private static IConsoleAdapter _consoleAdapter;
+        private static IFileAdapter _fileAdapter;
+        private static IInputFileRepository _inputFileRepository;
+        private static SolutionDayOneManager _dayOneManager { get; set; }
+        private static SolutionDayTwoManager _dayTwoManager { get; set; }
+        private static Results _results { get; set; }
 
         private static void Main(string[] args)
         {
@@ -31,42 +31,42 @@ namespace ConsoleApp
 
         private static void GetDayOneResults()
         {
-            Results = DayOneManager.GetResults();
+            _results = _dayOneManager.GetResults();
         }
 
         private static void PrintDayOneResults()
         {
-            ConsoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 1");
-            ConsoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            ConsoleAdapter.WriteLine();
-            ConsoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 2");
-            ConsoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
-            ConsoleAdapter.WriteLine();
-            ConsoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);            
-            ConsoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 1");
+            _consoleAdapter.WriteLine("Solution: {0}", _results.FirstResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 2");
+            _consoleAdapter.WriteLine("Solution: {0}", _results.SecondResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("Elapsed time: {0}ms", _results.TotalMilliseconds);
+            _consoleAdapter.WriteLine();
         }
 
         private static void GetDayTwoResults()
         {
-            Results = DayTwoManager.GetResults();
+            _results = _dayTwoManager.GetResults();
         }
 
         private static void PrintDayTwoResults()
         {
-            ConsoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 1");
-            ConsoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            ConsoleAdapter.WriteLine();
-            ConsoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
-            ConsoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 1");
+            _consoleAdapter.WriteLine("Solution: {0}", _results.FirstResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("Elapsed time: {0}ms", _results.TotalMilliseconds);
+            _consoleAdapter.WriteLine();
         }
 
         private static void ConfigureProgram()
         {
-            ConsoleAdapter = new ConsoleAdapter();
-            FileAdapter = new FileAdapter("./input");
-            InputFileRepository = new InputFileRepository(FileAdapter);
-            DayOneManager = new SolutionDayOneManager(InputFileRepository);
-            DayTwoManager = new SolutionDayTwoManager(InputFileRepository);
+            _consoleAdapter = new ConsoleAdapter();
+            _fileAdapter = new FileAdapter("./input");
+            _inputFileRepository = new InputFileRepository(_fileAdapter);
+            _dayOneManager = new SolutionDayOneManager(_inputFileRepository);
+            _dayTwoManager = new SolutionDayTwoManager(_inputFileRepository);
         }
     }
 }

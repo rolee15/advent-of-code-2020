@@ -1,6 +1,6 @@
 namespace ConsoleApp.Utilities
 {
-    internal class PasswordParser
+    internal static class PasswordParser
     {
         public static int ParseLowerBound(string line)
         {
