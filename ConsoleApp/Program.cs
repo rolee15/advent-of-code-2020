@@ -56,6 +56,9 @@ namespace ConsoleApp
             _consoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 1");
             _consoleAdapter.WriteLine("Solution: {0}", _results.FirstResult);
             _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 2");
+            _consoleAdapter.WriteLine("Solution: {0}", _results.SecondResult);
+            _consoleAdapter.WriteLine();
             _consoleAdapter.WriteLine("Elapsed time: {0}ms", _results.TotalMilliseconds);
             _consoleAdapter.WriteLine();
         }

@@ -31,7 +31,7 @@ namespace ConsoleApp.Solutions
 
                 var count = 0;
                 foreach (var ch in password)
-                    if (character == ch.ToString())
+                    if (character == ch)
                         count++;
 
                 if (minOccurence <= count && count <= maxOccurence)
@@ -41,6 +41,20 @@ namespace ConsoleApp.Solutions
 
         protected override void SolvePartTwo()
         {
+            SecondResult = 0;
+            foreach (var line in Lines)
+            {
+                var pos1 = PasswordParser.ParseLowerBound(line);
+                var pos2 = PasswordParser.ParseUpperBound(line);
+                var character = PasswordParser.ParseCharacter(line);
+                var password = PasswordParser.ParsePassword(line);
+
+                var ch1 = password[pos1 - 1];
+                var ch2 = password[pos2 - 1];
+
+                if (ch1 == character ^ ch2 == character)
+                    SecondResult++;
+            }
         }
 
         public static SolutionDayTwo FromArray(string[] lines)

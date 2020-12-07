@@ -42,6 +42,7 @@ namespace ConsoleApp.IntegrationTests
 
             //Then            
             Assert.Equal(474, results.FirstResult);
+            Assert.Equal(745, results.SecondResult);
         }
     }
 }

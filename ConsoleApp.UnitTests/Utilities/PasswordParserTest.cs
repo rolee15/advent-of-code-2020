@@ -57,9 +57,9 @@ namespace ConsoleApp.UnitTests.Utilities
             var char3 = PasswordParser.ParseCharacter(line3);
 
             //Then
-            Assert.Equal("c", char1);
-            Assert.Equal("b", char2);
-            Assert.Equal("c", char3);
+            Assert.Equal('c', char1);
+            Assert.Equal('b', char2);
+            Assert.Equal('c', char3);
         }
 
         [Fact]
