@@ -1,4 +1,4 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ConsoleApp.Tests")]
+[assembly: InternalsVisibleTo("ConsoleApp.UnitTests")]
 [assembly: InternalsVisibleTo("ConsoleApp.IntegrationTests")]

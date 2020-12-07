@@ -5,7 +5,7 @@ namespace ConsoleApp.Solutions
 {
     internal sealed class SolutionDayOne : SolutionBase
     {
-        public SolutionDayOne(int[] ints)
+        private SolutionDayOne(int[] ints)
         {
             if (ints.Length < 3)
                 throw new ArgumentException("Number of arguments less than three");
