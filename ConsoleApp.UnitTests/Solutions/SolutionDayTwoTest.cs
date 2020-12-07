@@ -29,6 +29,23 @@ namespace ConsoleApp.UnitTests.Solutions
 
         [Fact]
         public void GetFirstResultTest()
+        {            
+            SolutionDayTwo solution = InitAndRun();
+
+            //Then
+            Assert.Equal(2, solution.FirstResult);
+        }
+
+        [Fact]
+        public void GetSecondResultTest()
+        {
+            SolutionDayTwo solution = InitAndRun();
+
+            //Then
+            Assert.Equal(1, solution.SecondResult);
+        }
+
+        private static SolutionDayTwo InitAndRun()
         {
             //Given
             string[] array =
@@ -41,9 +58,7 @@ namespace ConsoleApp.UnitTests.Solutions
 
             //When
             solution.Solve();
-
-            //Then
-            Assert.Equal(2, solution.FirstResult);
+            return solution;
         }
     }
 }

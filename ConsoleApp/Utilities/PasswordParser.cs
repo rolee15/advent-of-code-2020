@@ -20,13 +20,11 @@ namespace ConsoleApp.Utilities
             return int.Parse(upperStr);
         }
 
-        internal static string ParseCharacter(string line)
+        internal static char ParseCharacter(string line)
         {
             var indexFrom = line.IndexOf(" ") + 1;
-            var indexTo = line.IndexOf(":");
-            var length = indexTo - indexFrom;
-            var character = line.Substring(indexFrom, length);
-            return character;
+            var character = line.Substring(indexFrom, 1);
+            return character[0];
         }
 
         internal static string ParsePassword(string line)
