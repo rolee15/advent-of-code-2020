@@ -14,14 +14,16 @@ namespace ConsoleApp.Repositories
 
         public IEnumerable<int> GetDayOneInput()
         {
-            return GetInput("day1.txt");
-        }
-
-        private IEnumerable<int> GetInput(string fileName)
-        {
-            var lines = _fileAdapter.GetFile(fileName);
+            var lines = _fileAdapter.GetFile("day1.txt");
             foreach (var line in lines)
                 yield return int.Parse(line);
+        }
+
+        public IEnumerable<string> GetDayTwoInput()
+        {
+            var lines = _fileAdapter.GetFile("day2.txt");
+            foreach (var line in lines)
+                yield return line;
         }
     }
 }

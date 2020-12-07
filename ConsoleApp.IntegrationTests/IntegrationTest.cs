@@ -1,28 +1,47 @@
-using System;
-using Xunit;
 using ConsoleApp.Adapters;
-using ConsoleApp.Repositories;
+using ConsoleApp.Interfaces;
 using ConsoleApp.Managers;
+using ConsoleApp.Repositories;
+using Xunit;
 
 namespace ConsoleApp.IntegrationTests
 {
     public class IntegrationTest
     {
+        public IntegrationTest()
+        {
+            FileAdapter = new FileAdapter(".");
+            InputFileRepository = new InputFileRepository(FileAdapter);
+        }
+
+        public IFileAdapter FileAdapter { get; set; }
+        public IInputFileRepository InputFileRepository { get; set; }
+
         [Fact]
         public void DayOne()
         {
-        //Given
-        var consoleAdapter = new ConsoleAdapter();
-        var fileAdapter = new FileAdapter(".");
-        var inputFileRepository = new InputFileRepository(fileAdapter);
-        var manager = new SolutionDayOneManager(inputFileRepository);
-        
-        //When
-        var results = manager.GetResults();
-        
-        //Then
-        Assert.Equal(1016131, results.FirstResult);
-        Assert.Equal(276432018, results.SecondResult);
+            //Given
+            var manager = new SolutionDayOneManager(InputFileRepository);
+
+            //When
+            var results = manager.GetResults();
+
+            //Then
+            Assert.Equal(1016131, results.FirstResult);
+            Assert.Equal(276432018, results.SecondResult);
+        }
+
+        [Fact]
+        public void DayTwo()
+        {
+            //Given
+            var manager = new SolutionDayTwoManager(InputFileRepository);
+
+            //When
+            var results = manager.GetResults();
+
+            //Then            
+            Assert.Equal(474, results.FirstResult);
         }
     }
 }
