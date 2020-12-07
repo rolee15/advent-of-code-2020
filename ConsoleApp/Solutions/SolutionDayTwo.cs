@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ConsoleApp.Utilities;
 
 namespace ConsoleApp.Solutions
 {
@@ -20,12 +21,29 @@ namespace ConsoleApp.Solutions
         /// </summary>
         protected override void SolvePartOne()
         {
-            FirstResult = 2;
+            FirstResult = 0;
+            foreach (var line in Lines)
+            {
+                int minOccurence = PasswordParser.ParseLowerBound(line);
+                int maxOccurence = PasswordParser.ParseUpperBound(line);
+                string character = PasswordParser.ParseCharacter(line);
+                string password = PasswordParser.ParsePassword(line);
+
+                int count = 0;
+                foreach (var ch in password)
+                {
+                    if (character == ch.ToString())
+                        count++;
+                }
+                
+                if (minOccurence <= count && count <= maxOccurence)
+                    FirstResult++;
+            }
         }
 
         protected override void SolvePartTwo()
         {
-            
+
         }
 
         public static SolutionDayTwo FromArray(string[] lines)

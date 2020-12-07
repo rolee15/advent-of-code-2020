@@ -23,9 +23,10 @@ namespace ConsoleApp
 
         private static void GetAndPrintResults()
         {
-            // GetDayOneResults();
-            // PrintDayOneResults();
+            GetDayOneResults();
+            PrintDayOneResults();
             GetDayTwoResults();
+            PrintDayTwoResults();
         }
 
         private static void GetDayOneResults()
