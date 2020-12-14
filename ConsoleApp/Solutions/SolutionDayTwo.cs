@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using ConsoleApp.Interfaces;
 using ConsoleApp.Utilities;
 
 namespace ConsoleApp.Solutions
 {
-    internal sealed class SolutionDayTwo : SolutionBase
+    internal sealed class SolutionDayTwo : ISolution
     {
-        public SolutionDayTwo(string[] lines)
+        private SolutionDayTwo(string[] lines)
         {
             if (lines.Length < 1)
                 throw new ArgumentException("Number of arguments less one");
@@ -19,9 +20,9 @@ namespace ConsoleApp.Solutions
         ///     Given a list of password policies and passwords, separated with a colon,
         ///     find the number of passwords that fit their policy.
         /// </summary>
-        protected override void SolvePartOne()
+        public object SolvePartOne()
         {
-            FirstResult = 0;
+            var count = 0;
             foreach (var line in Lines)
             {
                 var minOccurence = PasswordParser.ParseLowerBound(line);
@@ -29,19 +30,21 @@ namespace ConsoleApp.Solutions
                 var character = PasswordParser.ParseCharacter(line);
                 var password = PasswordParser.ParsePassword(line);
 
-                var count = 0;
+                var occurence = 0;
                 foreach (var ch in password)
                     if (character == ch)
-                        count++;
+                        occurence++;
 
-                if (minOccurence <= count && count <= maxOccurence)
-                    FirstResult++;
+                if (minOccurence <= occurence && occurence <= maxOccurence)
+                    count++;
             }
+
+            return count;
         }
 
-        protected override void SolvePartTwo()
+        public object SolvePartTwo()
         {
-            SecondResult = 0;
+            var count = 0;
             foreach (var line in Lines)
             {
                 var pos1 = PasswordParser.ParseLowerBound(line);
@@ -52,9 +55,11 @@ namespace ConsoleApp.Solutions
                 var ch1 = password[pos1 - 1];
                 var ch2 = password[pos2 - 1];
 
-                if (ch1 == character ^ ch2 == character)
-                    SecondResult++;
+                if ((ch1 == character) ^ (ch2 == character))
+                    count++;
             }
+
+            return count;
         }
 
         public static SolutionDayTwo FromArray(string[] lines)

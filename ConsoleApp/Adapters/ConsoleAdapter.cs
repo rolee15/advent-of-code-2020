@@ -5,16 +5,6 @@ namespace ConsoleApp.Adapters
 {
     internal class ConsoleAdapter : IConsoleAdapter
     {
-        public void Write(string msg)
-        {
-            Console.Write(msg);
-        }
-
-        public void Write(string format, params object[] arg)
-        {
-            Console.Write(format, arg);
-        }
-
         public void WriteLine()
         {
             Console.WriteLine();

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ConsoleApp.UnitTests.Solutions
 {
-    public class SolutionDayTwoTest
+    public class SolutionDayThreeTest
     {
         [Fact]
         public void ArrayFactoryMethodWithIncorrectListsThrowsArgumentException()
@@ -14,7 +14,7 @@ namespace ConsoleApp.UnitTests.Solutions
             string[] array = { };
 
             //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayTwo.FromArray(array));
+            Assert.Throws<ArgumentException>(() => SolutionDayThree.FromArray(array));
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace ConsoleApp.UnitTests.Solutions
             var list = new List<string>();
 
             //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayTwo.FromList(list));
+            Assert.Throws<ArgumentException>(() => SolutionDayThree.FromList(list));
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace ConsoleApp.UnitTests.Solutions
             var result = solution.SolvePartOne();
 
             //Then
-            Assert.Equal(2, result);
+            Assert.Equal(7, result);
         }
 
         [Fact]
@@ -50,18 +50,26 @@ namespace ConsoleApp.UnitTests.Solutions
             var result = solution.SolvePartTwo();
 
             //Then
-            Assert.Equal(1, result);
+            Assert.Equal(336L, result);
         }
 
-        private static SolutionDayTwo Init()
+        private static SolutionDayThree Init()
         {
             string[] array =
             {
-                "1-3 a: abcde",
-                "1-3 b: cdefg",
-                "2-9 c: ccccccccc"
+                "..##.......",
+                "#...#...#..",
+                ".#....#..#.",
+                "..#.#...#.#",
+                ".#...##..#.",
+                "..#.##.....",
+                ".#.#.#....#",
+                ".#........#",
+                "#.##...#...",
+                "#...##....#",
+                ".#..#...#.#"
             };
-            var solution = SolutionDayTwo.FromArray(array);
+            var solution = SolutionDayThree.FromArray(array);
             return solution;
         }
     }
