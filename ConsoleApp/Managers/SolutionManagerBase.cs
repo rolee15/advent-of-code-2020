@@ -6,41 +6,36 @@ namespace ConsoleApp.Managers
 {
     internal abstract class SolutionManagerBase : ISolutionManager
     {
+        private readonly Results _results;
+        private readonly Stopwatch _stopWatch;
+
+        protected readonly IInputFileRepository InputFileRepository;
+        protected ISolution Solution;
+
         protected SolutionManagerBase(
             IInputFileRepository inputFileRepository)
         {
             InputFileRepository = inputFileRepository;
-            StopWatch = new Stopwatch();
-            Results = new Results();
+            _stopWatch = new Stopwatch();
+            _results = new Results();
         }
-
-        protected IInputFileRepository InputFileRepository { get; }
-        private Stopwatch StopWatch { get; }
-        protected ISolution Solution { get; set; }
-        private Results Results { get; }
 
         public Results GetResults()
         {
             InitSolution();
             SolveAndMeasure();
-            MapResults();
-            return Results;
-
-            void MapResults()
-            {
-                Results.FirstResult = Solution.FirstResult;
-                Results.SecondResult = Solution.SecondResult;
-                Results.TotalMilliseconds = StopWatch.Elapsed.TotalMilliseconds;
-            }
+            return _results;
         }
 
         protected abstract void InitSolution();
 
         private void SolveAndMeasure()
         {
-            StopWatch.Start();
-            Solution.Solve();
-            StopWatch.Stop();
+            _stopWatch.Start();
+            _results.FirstResult = Solution.SolvePartOne();
+            _results.SecondResult = Solution.SolvePartTwo();
+            _stopWatch.Stop();
+            _results.TotalMilliseconds = _stopWatch.Elapsed.TotalMilliseconds;
         }
     }
 }

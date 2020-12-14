@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Solutions
 {
-    internal sealed class SolutionDayOne : SolutionBase
+    internal sealed class SolutionDayOne : ISolution
     {
         private SolutionDayOne(int[] ints)
         {
@@ -18,21 +19,22 @@ namespace ConsoleApp.Solutions
         ///     Find two numbers with sum 2020,
         ///     and return their product.
         /// </summary>
-        protected override void SolvePartOne()
+        public object SolvePartOne()
         {
             var visited = new Dictionary<int, int>();
             foreach (var item in Numbers)
                 if (visited.ContainsKey(item))
-                    FirstResult = item * visited[item];
+                    return item * visited[item];
                 else
                     visited.Add(2020 - item, item);
+            return null;
         }
 
         /// <summary>
         ///     Find three numbers with sum 2020,
         ///     and return their product.
         /// </summary>
-        protected override void SolvePartTwo()
+        public object SolvePartTwo()
         {
             var visited = new Dictionary<int, (int, int)>();
             for (var i = 0; i < Numbers.Count; i++)
@@ -40,21 +42,19 @@ namespace ConsoleApp.Solutions
             {
                 var a = Numbers[i];
                 var b = Numbers[j];
-                if (visited.ContainsKey(a))
+                if (visited.ContainsKey(a)) return a * visited[a].Item1 * visited[a].Item2;
+
+                if (visited.ContainsKey(b))
                 {
-                    SecondResult = a * visited[a].Item1 * visited[a].Item2;
+                    return b * visited[b].Item1 * visited[b].Item2;
                 }
-                else if (visited.ContainsKey(b))
-                {
-                    SecondResult = b * visited[b].Item1 * visited[b].Item2;
-                }
-                else
-                {
-                    var sum = 2020 - a - b;
-                    if (!visited.ContainsKey(sum))
-                        visited.Add(sum, (a, b));
-                }
+
+                var sum = 2020 - a - b;
+                if (!visited.ContainsKey(sum))
+                    visited.Add(sum, (a, b));
             }
+
+            return null;
         }
 
         public static SolutionDayOne FromArray(int[] ints)

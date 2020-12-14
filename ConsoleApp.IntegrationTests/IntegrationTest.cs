@@ -14,8 +14,8 @@ namespace ConsoleApp.IntegrationTests
             InputFileRepository = new InputFileRepository(FileAdapter);
         }
 
-        public IFileAdapter FileAdapter { get; set; }
-        public IInputFileRepository InputFileRepository { get; set; }
+        private IFileAdapter FileAdapter { get; }
+        private IInputFileRepository InputFileRepository { get; }
 
         [Fact]
         public void DayOne()
@@ -43,6 +43,20 @@ namespace ConsoleApp.IntegrationTests
             //Then            
             Assert.Equal(474, results.FirstResult);
             Assert.Equal(745, results.SecondResult);
+        }
+
+        [Fact]
+        public void DayThree()
+        {
+            //Given
+            var manager = new SolutionDayThreeManager(InputFileRepository);
+
+            //When
+            var results = manager.GetResults();
+
+            //Then
+            Assert.Equal(234, results.FirstResult);
+            Assert.Equal(5813773056L, results.SecondResult);
         }
     }
 }
