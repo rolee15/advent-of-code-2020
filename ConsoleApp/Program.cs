@@ -33,7 +33,7 @@ namespace ConsoleApp
             GetDayTwoResults();
             PrintDayTwoResults();
             GetDayThreeResults();
-            GetDayThreeResults();
+            PrintDayThreeResults();
             GetDayFourResults();
             PrintDayFourResults();
         }

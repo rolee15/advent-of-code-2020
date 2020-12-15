@@ -56,15 +56,15 @@ namespace ConsoleApp.Solutions
         {
             var passports = new List<Passport>();
             var p = new Passport();
-            for (var i = 0; i < tokens.Count; i++)
-                if (string.IsNullOrWhiteSpace(tokens[i]))
+            foreach (string token in tokens)
+                if (string.IsNullOrWhiteSpace(token))
                 {
                     passports.Add(p);
                     p = new Passport();
                 }
                 else
                 {
-                    var items = tokens[i].Split(':');
+                    var items = token.Split(':');
                     if (items.Length == 2)
                     {
                         var key = items[0];
@@ -90,29 +90,27 @@ namespace ConsoleApp.Solutions
 
         private class Passport
         {
-            private readonly List<string> props = new List<string>();
-
-            private bool isValid = true;
-
-            private readonly List<string> mandatory = new List<string>
-            {
-                "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"
-            };
-
-            private readonly List<string> eyeColors = new List<string>
+            private readonly List<string> _eyeColors = new List<string>
             {
                 "amb", "blu", "brn", "gry", "grn", "hzl", "oth"
             };
 
-            public int BirthYear { get; set; }
-            public int IssueYear { get; set; }
-            public int ExpirationYear { get; set; }
-            public string Height { get; set; }
-            public string HairColor { get; set; }
-            public string EyeColor { get; set; }
-            public string PassportId { get; set; }
-            public string CountryId { get; set; }
-            public bool IsValid { get => isValid; }
+            private readonly List<string> _mandatory = new List<string>
+            {
+                "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"
+            };
+
+            private readonly List<string> _props = new List<string>();
+
+            private int BirthYear { get; set; }
+            private int IssueYear { get; set; }
+            private int ExpirationYear { get; set; }
+            private string Height { get; set; }
+            private string HairColor { get; set; }
+            private string EyeColor { get; set; }
+            private string PassportId { get; set; }
+            private string CountryId { get; set; }
+            public bool IsValid { get; private set; } = true;
 
             public void MapProperty(string key, string value)
             {
@@ -120,47 +118,47 @@ namespace ConsoleApp.Solutions
                 {
                     case "byr":
                         BirthYear = int.Parse(value);
-                        isValid &= 1920 <= BirthYear && BirthYear <= 2002;
+                        IsValid &= 1920 <= BirthYear && BirthYear <= 2002;
                         break;
                     case "iyr":
                         IssueYear = int.Parse(value);
-                        isValid &= 2010 <= IssueYear && IssueYear <= 2020;
+                        IsValid &= 2010 <= IssueYear && IssueYear <= 2020;
                         break;
                     case "eyr":
                         ExpirationYear = int.Parse(value);
-                        isValid &= 2020 <= ExpirationYear && ExpirationYear <= 2030;
+                        IsValid &= 2020 <= ExpirationYear && ExpirationYear <= 2030;
                         break;
                     case "hgt":
                         Height = value;
                         if (Height.EndsWith("cm"))
                         {
                             var heightInt = int.Parse(Height.Substring(0, Height.Length - 2));
-                            isValid &= 150 <= heightInt && heightInt <= 193;
+                            IsValid &= 150 <= heightInt && heightInt <= 193;
                         }
                         else if (Height.EndsWith("in"))
                         {
                             var heightInt = int.Parse(Height.Substring(0, Height.Length - 2));
-                            isValid &= 59 <= heightInt && heightInt <= 76;
+                            IsValid &= 59 <= heightInt && heightInt <= 76;
                         }
                         else
                         {
-                            isValid = false;
+                            IsValid = false;
                         }
 
                         break;
                     case "hcl":
                         HairColor = value;
-                        isValid &= HairColor.StartsWith("#");
+                        IsValid &= HairColor.StartsWith("#");
                         foreach (var ch in HairColor.Substring(1))
-                            isValid &= 'a' <= ch && ch <= 'z' || '0' <= ch && ch <= '9';
+                            IsValid &= 'a' <= ch && ch <= 'z' || '0' <= ch && ch <= '9';
                         break;
                     case "ecl":
                         EyeColor = value;
-                        isValid &= eyeColors.Contains(EyeColor);
+                        IsValid &= _eyeColors.Contains(EyeColor);
                         break;
                     case "pid":
                         PassportId = value;
-                        isValid &= PassportId.Length == 9;
+                        IsValid &= PassportId.Length == 9;
                         break;
                     case "cid":
                         CountryId = value;
@@ -168,15 +166,13 @@ namespace ConsoleApp.Solutions
                     default:
                         throw new ArgumentException("Not a known field", nameof(key));
                 }
-
-                ;
-                props.Add(key);
+                _props.Add(key);
             }
 
             public bool HasMandatories()
             {
-                foreach (var prop in mandatory)
-                    if (!props.Contains(prop))
+                foreach (var prop in _mandatory)
+                    if (!_props.Contains(prop))
                         return false;
                 return true;
             }
