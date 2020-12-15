@@ -32,5 +32,12 @@ namespace ConsoleApp.Repositories
             foreach (var line in lines)
                 yield return line;
         }
+
+        public IEnumerable<string> GetDayFourInput()
+        {
+            var lines = _fileAdapter.GetFile("day4.txt");
+            foreach (var line in lines)
+                yield return line;
+        }
     }
 }
