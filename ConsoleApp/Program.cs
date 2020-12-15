@@ -17,6 +17,7 @@ namespace ConsoleApp
         private static ISolutionManager _dayTwoManager;
         private static ISolutionManager _dayThreeManager;
         private static ISolutionManager _dayFourManager;
+        private static SolutionDayFiveManager _dayFiveManager;
 
         private static Results Results { get; set; }
 
@@ -36,6 +37,8 @@ namespace ConsoleApp
             PrintDayThreeResults();
             GetDayFourResults();
             PrintDayFourResults();
+            GetDayFiveResults();
+            PrintDayFiveResults();
         }
 
         private static void GetDayOneResults()
@@ -106,6 +109,23 @@ namespace ConsoleApp
             _consoleAdapter.WriteLine();
         }
 
+        private static void GetDayFiveResults()
+        {
+            Results = _dayFiveManager.GetResults();
+        }
+
+        private static void PrintDayFiveResults()
+        {
+            _consoleAdapter.WriteLine("--- Day 5: Binary Boarding --- Part 1");
+            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 5: Binary Boarding --- Part 2");
+            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
+            _consoleAdapter.WriteLine();
+        }
+
         private static void ConfigureProgram()
         {
             _consoleAdapter = new ConsoleAdapter();
@@ -115,6 +135,7 @@ namespace ConsoleApp
             _dayTwoManager = new SolutionDayTwoManager(_inputFileRepository);
             _dayThreeManager = new SolutionDayThreeManager(_inputFileRepository);
             _dayFourManager = new SolutionDayFourManager(_inputFileRepository);
+            _dayFiveManager = new SolutionDayFiveManager(_inputFileRepository);
         }
     }
 }

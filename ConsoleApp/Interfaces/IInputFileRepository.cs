@@ -8,5 +8,6 @@ namespace ConsoleApp.Interfaces
         IEnumerable<string> GetDayTwoInput();
         IEnumerable<string> GetDayThreeInput();
         IEnumerable<string> GetDayFourInput();
+        IEnumerable<string> GetDayFiveInput();
     }
 }
