@@ -17,5 +17,12 @@ namespace ConsoleApp.Utilities
             rows = rows.Replace('L', '0').Replace('R', '1');
             return  Convert.ToInt32(rows, 2);
         }
+
+        internal static int GetID(string pass)
+        {
+            var row = GetRowNumber(pass);
+            var col = GetColumnNumber(pass);
+            return row * 8 + col;
+        }
     }
 }

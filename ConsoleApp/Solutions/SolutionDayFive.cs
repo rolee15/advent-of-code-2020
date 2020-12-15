@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Utilities;
 
@@ -11,32 +12,21 @@ namespace ConsoleApp.Solutions
         {
             if (lines.Length < 1)
                 throw new ArgumentException("Number of arguments less than one");
-            _passes = new List<string>(lines);
+            _ids = lines.Select(pass => BoardingPassParser.GetID(pass));
         }
-
-        private readonly List<string> _passes;
+        private readonly IEnumerable<int> _ids;
 
         public object SolvePartOne()
-        {
-            var max = int.MinValue;
-            foreach (var pass in _passes)
-            {
-                var row = BoardingPassParser.GetRowNumber(pass);
-                var col = BoardingPassParser.GetColumnNumber(pass);
-                var id = row * 8 + col;
-                if (id > max)
-                    max = id;
-            }
-
-            return max;
-        }
+            => _ids.Max();
 
         public object SolvePartTwo()
         {
-            var max = int.MinValue;
+            var minId = _ids.Min();
+            var maxId = _ids.Max();
+            var missingIds = Enumerable.Range(minId, maxId).Where(id => !_ids.Contains(id));
+            var id = missingIds.Where(id => _ids.Contains(id - 1) && _ids.Contains(id + 1)).FirstOrDefault();
 
-
-            return max;
+            return id;
         }
 
         internal static SolutionDayFive FromArray(string[] lines)
