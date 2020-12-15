@@ -10,7 +10,7 @@ namespace ConsoleApp.Solutions
         private SolutionDayTwo(string[] lines)
         {
             if (lines.Length < 1)
-                throw new ArgumentException("Number of arguments less one");
+                throw new ArgumentException("Number of arguments less than one");
             Lines = new List<string>(lines);
         }
 

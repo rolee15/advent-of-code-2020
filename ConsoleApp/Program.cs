@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using ConsoleApp.Adapters;
+﻿using ConsoleApp.Adapters;
 using ConsoleApp.DTO;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Managers;
@@ -17,6 +16,7 @@ namespace ConsoleApp
         private static ISolutionManager _dayOneManager;
         private static ISolutionManager _dayTwoManager;
         private static ISolutionManager _dayThreeManager;
+        private static ISolutionManager _dayFourManager;
 
         private static Results Results { get; set; }
 
@@ -33,7 +33,9 @@ namespace ConsoleApp
             GetDayTwoResults();
             PrintDayTwoResults();
             GetDayThreeResults();
-            PrintDayThreeResults();
+            GetDayThreeResults();
+            GetDayFourResults();
+            PrintDayFourResults();
         }
 
         private static void GetDayOneResults()
@@ -87,6 +89,23 @@ namespace ConsoleApp
             _consoleAdapter.WriteLine();
         }
 
+        private static void GetDayFourResults()
+        {
+            Results = _dayFourManager.GetResults();
+        }
+
+        private static void PrintDayFourResults()
+        {
+            _consoleAdapter.WriteLine("--- Day 4: Passport Processing --- Part 1");
+            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("--- Day 4: Passport Processing --- Part 2");
+            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
+            _consoleAdapter.WriteLine();
+        }
+
         private static void ConfigureProgram()
         {
             _consoleAdapter = new ConsoleAdapter();
@@ -95,6 +114,7 @@ namespace ConsoleApp
             _dayOneManager = new SolutionDayOneManager(_inputFileRepository);
             _dayTwoManager = new SolutionDayTwoManager(_inputFileRepository);
             _dayThreeManager = new SolutionDayThreeManager(_inputFileRepository);
+            _dayFourManager = new SolutionDayFourManager(_inputFileRepository);
         }
     }
 }

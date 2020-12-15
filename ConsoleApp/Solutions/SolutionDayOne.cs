@@ -44,10 +44,7 @@ namespace ConsoleApp.Solutions
                 var b = Numbers[j];
                 if (visited.ContainsKey(a)) return a * visited[a].Item1 * visited[a].Item2;
 
-                if (visited.ContainsKey(b))
-                {
-                    return b * visited[b].Item1 * visited[b].Item2;
-                }
+                if (visited.ContainsKey(b)) return b * visited[b].Item1 * visited[b].Item2;
 
                 var sum = 2020 - a - b;
                 if (!visited.ContainsKey(sum))

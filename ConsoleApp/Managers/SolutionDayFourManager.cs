@@ -4,9 +4,9 @@ using ConsoleApp.Solutions;
 
 namespace ConsoleApp.Managers
 {
-    internal class SolutionDayThreeManager : SolutionManagerBase
+    internal class SolutionDayFourManager : SolutionManagerBase
     {
-        public SolutionDayThreeManager(
+        public SolutionDayFourManager(
             IInputFileRepository inputFileRepository) : base(
             inputFileRepository)
         {
@@ -14,8 +14,8 @@ namespace ConsoleApp.Managers
 
         protected override void InitSolution()
         {
-            var input = InputFileRepository.GetDayThreeInput();
-            Solution = SolutionDayThree.FromList(input.ToList());
+            var input = InputFileRepository.GetDayFourInput();
+            Solution = SolutionDayFour.FromList(input.ToList());
         }
     }
 }

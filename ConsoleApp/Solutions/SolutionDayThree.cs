@@ -12,7 +12,7 @@ namespace ConsoleApp.Solutions
         private SolutionDayThree(string[] lines)
         {
             if (lines.Length < 1)
-                throw new ArgumentException("Number of arguments less one");
+                throw new ArgumentException("Number of arguments less than one");
             Map = new List<string>(lines);
             Height = lines.Length;
             Width = lines[0].Length;
