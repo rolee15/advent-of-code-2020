@@ -72,5 +72,19 @@ namespace ConsoleApp.IntegrationTests
             Assert.Equal(264, results.FirstResult);
             Assert.Equal(224, results.SecondResult);
         }
+
+        [Fact]
+        public void DayFive()
+        {
+            //Given
+            var manager = new SolutionDayFiveManager(InputFileRepository);
+
+            //When
+            var results = manager.GetResults();
+
+            //Then
+            Assert.Equal(959, results.FirstResult);
+            //Assert.Equal(224, results.SecondResult);
+        }
     }
 }
