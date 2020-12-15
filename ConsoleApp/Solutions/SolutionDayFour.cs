@@ -25,10 +25,8 @@ namespace ConsoleApp.Solutions
         {
             var count = 0;
             foreach (var passport in Passports)
-            {
-                if (passport.IsValid())
+                if (passport.HasMandatories())
                     count++;
-            }
 
             return count;
         }
@@ -39,7 +37,12 @@ namespace ConsoleApp.Solutions
         /// </summary>
         public object SolvePartTwo()
         {
-            return null;
+            var count = 0;
+            foreach (var passport in Passports)
+                if (passport.HasMandatories() && passport.IsValid)
+                    count++;
+
+            return count;
         }
 
         private List<string> Tokenize(string[] lines)
@@ -87,18 +90,20 @@ namespace ConsoleApp.Solutions
 
         private class Passport
         {
-            private List<string> mandatory = new List<string>
+            private readonly List<string> props = new List<string>();
+
+            private bool isValid = true;
+
+            private readonly List<string> mandatory = new List<string>
             {
-                "byr",
-                "iyr",
-                "eyr",
-                "hgt",
-                "hcl",
-                "ecl",
-                "pid"
+                "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"
             };
 
-            private readonly List<string> props = new List<string>();
+            private readonly List<string> eyeColors = new List<string>
+            {
+                "amb", "blu", "brn", "gry", "grn", "hzl", "oth"
+            };
+
             public int BirthYear { get; set; }
             public int IssueYear { get; set; }
             public int ExpirationYear { get; set; }
@@ -107,6 +112,7 @@ namespace ConsoleApp.Solutions
             public string EyeColor { get; set; }
             public string PassportId { get; set; }
             public string CountryId { get; set; }
+            public bool IsValid { get => isValid; }
 
             public void MapProperty(string key, string value)
             {
@@ -114,24 +120,47 @@ namespace ConsoleApp.Solutions
                 {
                     case "byr":
                         BirthYear = int.Parse(value);
+                        isValid &= 1920 <= BirthYear && BirthYear <= 2002;
                         break;
                     case "iyr":
                         IssueYear = int.Parse(value);
+                        isValid &= 2010 <= IssueYear && IssueYear <= 2020;
                         break;
                     case "eyr":
                         ExpirationYear = int.Parse(value);
+                        isValid &= 2020 <= ExpirationYear && ExpirationYear <= 2030;
                         break;
                     case "hgt":
                         Height = value;
+                        if (Height.EndsWith("cm"))
+                        {
+                            var heightInt = int.Parse(Height.Substring(0, Height.Length - 2));
+                            isValid &= 150 <= heightInt && heightInt <= 193;
+                        }
+                        else if (Height.EndsWith("in"))
+                        {
+                            var heightInt = int.Parse(Height.Substring(0, Height.Length - 2));
+                            isValid &= 59 <= heightInt && heightInt <= 76;
+                        }
+                        else
+                        {
+                            isValid = false;
+                        }
+
                         break;
                     case "hcl":
                         HairColor = value;
+                        isValid &= HairColor.StartsWith("#");
+                        foreach (var ch in HairColor.Substring(1))
+                            isValid &= 'a' <= ch && ch <= 'z' || '0' <= ch && ch <= '9';
                         break;
                     case "ecl":
                         EyeColor = value;
+                        isValid &= eyeColors.Contains(EyeColor);
                         break;
                     case "pid":
                         PassportId = value;
+                        isValid &= PassportId.Length == 9;
                         break;
                     case "cid":
                         CountryId = value;
@@ -144,7 +173,7 @@ namespace ConsoleApp.Solutions
                 props.Add(key);
             }
 
-            public bool IsValid()
+            public bool HasMandatories()
             {
                 foreach (var prop in mandatory)
                     if (!props.Contains(prop))
