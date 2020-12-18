@@ -1,67 +1,61 @@
-using System;
 using System.Collections.Generic;
-using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Solutions
 {
-    internal sealed class SolutionDayOne : ISolution
+    internal abstract partial class SolutionBase
     {
-        private SolutionDayOne(int[] ints)
+        public static SolutionBase CreateDayOneFrom(IEnumerable<string> lines)
         {
-            if (ints.Length < 3)
-                throw new ArgumentException("Number of arguments less than three");
-            Numbers = new List<int>(ints);
+            return new SolutionDayOne(lines);
         }
 
-        private List<int> Numbers { get; }
-
-        /// <summary>
-        ///     Find two numbers with sum 2020,
-        ///     and return their product.
-        /// </summary>
-        public object SolvePartOne()
+        private class SolutionDayOne : SolutionBase
         {
-            var visited = new Dictionary<int, int>();
-            foreach (var item in Numbers)
-                if (visited.ContainsKey(item))
-                    return item * visited[item];
-                else
-                    visited.Add(2020 - item, item);
-            return null;
-        }
-
-        /// <summary>
-        ///     Find three numbers with sum 2020,
-        ///     and return their product.
-        /// </summary>
-        public object SolvePartTwo()
-        {
-            var visited = new Dictionary<int, (int, int)>();
-            for (var i = 0; i < Numbers.Count; i++)
-            for (var j = i + 1; j < Numbers.Count; j++)
+            public SolutionDayOne(IEnumerable<string> input)
             {
-                var a = Numbers[i];
-                var b = Numbers[j];
-                if (visited.ContainsKey(a)) return a * visited[a].Item1 * visited[a].Item2;
-
-                if (visited.ContainsKey(b)) return b * visited[b].Item1 * visited[b].Item2;
-
-                var sum = 2020 - a - b;
-                if (!visited.ContainsKey(sum))
-                    visited.Add(sum, (a, b));
+                var ints = ParseNumbers(input);
+                Numbers = new List<int>(ints);
             }
 
-            return null;
-        }
+            private List<int> Numbers { get; }
+            public override string Title => "Day 1: Report Repair";
 
-        public static SolutionDayOne FromArray(int[] ints)
-        {
-            return new SolutionDayOne(ints);
-        }
+            public override object SolvePartOne()
+            {
+                var visited = new Dictionary<int, int>();
+                foreach (var item in Numbers)
+                    if (visited.ContainsKey(item))
+                        return item * visited[item];
+                    else
+                        visited.Add(2020 - item, item);
+                return null;
+            }
 
-        public static SolutionDayOne FromList(List<int> list)
-        {
-            return new SolutionDayOne(list.ToArray());
+            public override object SolvePartTwo()
+            {
+                var visited = new Dictionary<int, (int, int)>();
+                for (var i = 0; i < Numbers.Count - 1; i++)
+                for (var j = i + 1; j < Numbers.Count; j++)
+                {
+                    var a = Numbers[i];
+                    var b = Numbers[j];
+                    if (visited.ContainsKey(a)) return a * visited[a].Item1 * visited[a].Item2;
+
+                    if (visited.ContainsKey(b)) return b * visited[b].Item1 * visited[b].Item2;
+
+                    var sum = 2020 - a - b;
+                    if (!visited.ContainsKey(sum))
+                        visited.Add(sum, (a, b));
+                }
+
+                return null;
+            }
+
+            private IEnumerable<int> ParseNumbers(IEnumerable<string> lines)
+            {
+                foreach (var line in lines)
+                    yield return int.Parse(line);
+            }
         }
     }
 }

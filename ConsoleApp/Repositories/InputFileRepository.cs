@@ -12,37 +12,9 @@ namespace ConsoleApp.Repositories
             _fileAdapter = fileAdapter;
         }
 
-        public IEnumerable<int> GetDayOneInput()
+        public IEnumerable<string> GetInput(string fileName)
         {
-            var lines = _fileAdapter.GetFile("day1.txt");
-            foreach (var line in lines)
-                yield return int.Parse(line);
-        }
-
-        public IEnumerable<string> GetDayTwoInput()
-        {
-            var lines = _fileAdapter.GetFile("day2.txt");
-            foreach (var line in lines)
-                yield return line;
-        }
-
-        public IEnumerable<string> GetDayThreeInput()
-        {
-            var lines = _fileAdapter.GetFile("day3.txt");
-            foreach (var line in lines)
-                yield return line;
-        }
-
-        public IEnumerable<string> GetDayFourInput()
-        {
-            var lines = _fileAdapter.GetFile("day4.txt");
-            foreach (var line in lines)
-                yield return line;
-        }
-
-        public IEnumerable<string> GetDayFiveInput()
-        {
-            var lines = _fileAdapter.GetFile("day5.txt");
+            var lines = _fileAdapter.GetFile(fileName);
             foreach (var line in lines)
                 yield return line;
         }

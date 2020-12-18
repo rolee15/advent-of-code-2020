@@ -15,7 +15,14 @@ namespace ConsoleApp.Adapters
         public string[] GetFile(string fileName)
         {
             var path = Path.Combine(_folderPath, fileName);
-            return File.ReadAllLines(path);
+            try
+            {
+                return File.ReadAllLines(path);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

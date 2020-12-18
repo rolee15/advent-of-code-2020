@@ -10,10 +10,10 @@ namespace ConsoleApp.UnitTests.Utilities
         {
             //Given
             var pass = "FBFBBFFRLR";
-            
+
             //When
             var row = BoardingPassParser.GetRowNumber(pass);
-            
+
             //Then
             Assert.Equal(44, row);
         }
@@ -23,10 +23,10 @@ namespace ConsoleApp.UnitTests.Utilities
         {
             //Given
             var pass = "FBFBBFFRLR";
-            
+
             //When
             var row = BoardingPassParser.GetColumnNumber(pass);
-            
+
             //Then
             Assert.Equal(5, row);
         }

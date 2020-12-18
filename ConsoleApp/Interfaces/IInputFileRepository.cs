@@ -4,10 +4,6 @@ namespace ConsoleApp.Interfaces
 {
     public interface IInputFileRepository
     {
-        IEnumerable<int> GetDayOneInput();
-        IEnumerable<string> GetDayTwoInput();
-        IEnumerable<string> GetDayThreeInput();
-        IEnumerable<string> GetDayFourInput();
-        IEnumerable<string> GetDayFiveInput();
+        IEnumerable<string> GetInput(string fileName);
     }
 }

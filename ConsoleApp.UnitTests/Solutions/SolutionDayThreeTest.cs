@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using ConsoleApp.Solutions;
 using Xunit;
 
@@ -7,26 +5,6 @@ namespace ConsoleApp.UnitTests.Solutions
 {
     public class SolutionDayThreeTest
     {
-        [Fact]
-        public void ArrayFactoryMethodWithIncorrectListsThrowsArgumentException()
-        {
-            //Given
-            string[] array = { };
-
-            //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayThree.FromArray(array));
-        }
-
-        [Fact]
-        public void ListFactoryMethodWithIncorrectListsThrowsArgumentException()
-        {
-            //Given
-            var list = new List<string>();
-
-            //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayThree.FromList(list));
-        }
-
         [Fact]
         public void GetFirstResultTest()
         {
@@ -53,7 +31,7 @@ namespace ConsoleApp.UnitTests.Solutions
             Assert.Equal(336L, result);
         }
 
-        private static SolutionDayThree Init()
+        private static SolutionBase Init()
         {
             string[] array =
             {
@@ -69,7 +47,7 @@ namespace ConsoleApp.UnitTests.Solutions
                 "#...##....#",
                 ".#..#...#.#"
             };
-            var solution = SolutionDayThree.FromArray(array);
+            var solution = SolutionBase.CreateDayThreeFrom(array);
             return solution;
         }
     }
