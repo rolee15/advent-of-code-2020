@@ -10,132 +10,34 @@ namespace ConsoleApp
     [UsedImplicitly]
     internal class Program
     {
+        private static ISolutionManager _solutionManager;
         private static IConsoleAdapter _consoleAdapter;
-        private static IFileAdapter _fileAdapter;
-        private static IInputFileRepository _inputFileRepository;
-        private static ISolutionManager _dayOneManager;
-        private static ISolutionManager _dayTwoManager;
-        private static ISolutionManager _dayThreeManager;
-        private static ISolutionManager _dayFourManager;
-        private static SolutionDayFiveManager _dayFiveManager;
-
-        private static Results Results { get; set; }
 
         public static void Main()
         {
             ConfigureProgram();
-            GetAndPrintResults();
-        }
-
-        private static void GetAndPrintResults()
-        {
-            GetDayOneResults();
-            PrintDayOneResults();
-            GetDayTwoResults();
-            PrintDayTwoResults();
-            GetDayThreeResults();
-            PrintDayThreeResults();
-            GetDayFourResults();
-            PrintDayFourResults();
-            GetDayFiveResults();
-            PrintDayFiveResults();
-        }
-
-        private static void GetDayOneResults()
-        {
-            Results = _dayOneManager.GetResults();
-        }
-
-        private static void PrintDayOneResults()
-        {
-            _consoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 1");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("--- Day 1: Report Repair --- Part 2");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
-            _consoleAdapter.WriteLine();
-        }
-
-        private static void GetDayTwoResults()
-        {
-            Results = _dayTwoManager.GetResults();
-        }
-
-        private static void PrintDayTwoResults()
-        {
-            _consoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 1");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("--- Day 2: Password Philosophy --- Part 2");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
-            _consoleAdapter.WriteLine();
-        }
-
-        private static void GetDayThreeResults()
-        {
-            Results = _dayThreeManager.GetResults();
-        }
-
-        private static void PrintDayThreeResults()
-        {
-            _consoleAdapter.WriteLine("--- Day 3: Toboggan Trajectory --- Part 1");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("--- Day 3: Toboggan Trajectory --- Part 2");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
-            _consoleAdapter.WriteLine();
-        }
-
-        private static void GetDayFourResults()
-        {
-            Results = _dayFourManager.GetResults();
-        }
-
-        private static void PrintDayFourResults()
-        {
-            _consoleAdapter.WriteLine("--- Day 4: Passport Processing --- Part 1");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("--- Day 4: Passport Processing --- Part 2");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
-            _consoleAdapter.WriteLine();
-        }
-
-        private static void GetDayFiveResults()
-        {
-            Results = _dayFiveManager.GetResults();
-        }
-
-        private static void PrintDayFiveResults()
-        {
-            _consoleAdapter.WriteLine("--- Day 5: Binary Boarding --- Part 1");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.FirstResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("--- Day 5: Binary Boarding --- Part 2");
-            _consoleAdapter.WriteLine("Solution: {0}", Results.SecondResult);
-            _consoleAdapter.WriteLine();
-            _consoleAdapter.WriteLine("Elapsed time: {0}ms", Results.TotalMilliseconds);
-            _consoleAdapter.WriteLine();
+            var results = _solutionManager.SolveAll();
+            foreach (var result in results) PrintResults(result);
         }
 
         private static void ConfigureProgram()
         {
+            var fileAdapter = new FileAdapter("./input");
+            var inputFileRepository = new InputFileRepository(fileAdapter);
+            _solutionManager = new SolutionManager(inputFileRepository);
             _consoleAdapter = new ConsoleAdapter();
-            _fileAdapter = new FileAdapter("./input");
-            _inputFileRepository = new InputFileRepository(_fileAdapter);
-            _dayOneManager = new SolutionDayOneManager(_inputFileRepository);
-            _dayTwoManager = new SolutionDayTwoManager(_inputFileRepository);
-            _dayThreeManager = new SolutionDayThreeManager(_inputFileRepository);
-            _dayFourManager = new SolutionDayFourManager(_inputFileRepository);
-            _dayFiveManager = new SolutionDayFiveManager(_inputFileRepository);
+        }
+
+        private static void PrintResults(Results result)
+        {
+            _consoleAdapter.WriteLine($"--- {result.Title} --- Part 1");
+            _consoleAdapter.WriteLine($"Solution: {result.FirstResult}");
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine($"--- {result.Title} ---  Part 2");
+            _consoleAdapter.WriteLine($"Solution: {result.SecondResult}");
+            _consoleAdapter.WriteLine();
+            _consoleAdapter.WriteLine($"Elapsed time: {result.TotalMilliseconds}ms");
+            _consoleAdapter.WriteLine();
         }
     }
 }

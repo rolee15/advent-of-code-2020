@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using ConsoleApp.Adapters;
+using ConsoleApp.DTO;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Managers;
 using ConsoleApp.Repositories;
@@ -12,77 +15,41 @@ namespace ConsoleApp.IntegrationTests
         {
             FileAdapter = new FileAdapter(".");
             InputFileRepository = new InputFileRepository(FileAdapter);
+            Manager = new SolutionManager(InputFileRepository);
         }
 
         private IFileAdapter FileAdapter { get; }
         private IInputFileRepository InputFileRepository { get; }
+        private SolutionManager Manager { get; }
+        private List<Results> AllResults { get; set; }
 
         [Fact]
-        public void DayOne()
+        public void SolveAll()
         {
-            //Given
-            var manager = new SolutionDayOneManager(InputFileRepository);
+            var allResults = Manager.SolveAll().ToList();
 
-            //When
-            var results = manager.GetResults();
-
-            //Then
+            var results = allResults[0];
+            Assert.Equal("Day 1: Report Repair", results.Title);
             Assert.Equal(1016131, results.FirstResult);
             Assert.Equal(276432018, results.SecondResult);
-        }
 
-        [Fact]
-        public void DayTwo()
-        {
-            //Given
-            var manager = new SolutionDayTwoManager(InputFileRepository);
-
-            //When
-            var results = manager.GetResults();
-
-            //Then            
+            results = allResults[1];
+            Assert.Equal("Day 2: Password Philosophy", results.Title);
             Assert.Equal(474, results.FirstResult);
             Assert.Equal(745, results.SecondResult);
-        }
 
-        [Fact]
-        public void DayThree()
-        {
-            //Given
-            var manager = new SolutionDayThreeManager(InputFileRepository);
-
-            //When
-            var results = manager.GetResults();
-
-            //Then
+            results = allResults[2];
+            Assert.Equal("Day 3: Toboggan Trajectory", results.Title);
             Assert.Equal(234, results.FirstResult);
             Assert.Equal(5813773056L, results.SecondResult);
-        }
 
-        [Fact]
-        public void DayFour()
-        {
-            //Given
-            var manager = new SolutionDayFourManager(InputFileRepository);
-
-            //When
-            var results = manager.GetResults();
-
-            //Then
+            results = allResults[3];
+            Assert.Equal("Day 4: Passport Processing", results.Title);
             Assert.Equal(264, results.FirstResult);
             Assert.Equal(224, results.SecondResult);
-        }
 
-        [Fact]
-        public void DayFive()
-        {
-            //Given
-            var manager = new SolutionDayFiveManager(InputFileRepository);
-
-            //When
-            var results = manager.GetResults();
-
-            //Then
+            results = allResults[4];
+            Assert.Equal("Day 5: Binary Boarding", results.Title);
             Assert.Equal(959, results.FirstResult);
             Assert.Equal(527, results.SecondResult);
         }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using ConsoleApp.Solutions;
 using Xunit;
 
@@ -8,53 +6,9 @@ namespace ConsoleApp.UnitTests.Solutions
     public class SolutionDayFourTest
     {
         [Fact]
-        public void ArrayFactoryMethodWithIncorrectListsThrowsArgumentException()
-        {
-            //Given
-            string[] array = { };
-
-            //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayFour.FromArray(array));
-        }
-
-        [Fact]
-        public void ListFactoryMethodWithIncorrectListsThrowsArgumentException()
-        {
-            //Given
-            var list = new List<string>();
-
-            //Then
-            Assert.Throws<ArgumentException>(() => SolutionDayFour.FromList(list));
-        }
-
-        [Fact]
         public void GetFirstResultTest()
         {
             //Given
-            var solution = Init();
-
-            //When
-            var result = solution.SolvePartOne();
-
-            //Then
-            Assert.Equal(2, result);
-        }
-
-        [Fact]
-        public void GetSecondResultTest1()
-        {
-            //Given
-            var solution = Init2();
-
-            //When
-            var result = solution.SolvePartTwo();
-
-            //Then
-            Assert.Equal(4, result);
-        }
-
-        private static SolutionDayFour Init()
-        {
             string[] array =
             {
                 "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd",
@@ -71,12 +25,19 @@ namespace ConsoleApp.UnitTests.Solutions
                 "hcl:#cfa07d eyr:2025 pid:166559648",
                 "iyr:2011 ecl:brn hgt:59in"
             };
-            var solution = SolutionDayFour.FromArray(array);
-            return solution;
+            var solution = Init(array);
+
+            //When
+            var result = solution.SolvePartOne();
+
+            //Then
+            Assert.Equal(2, result);
         }
 
-        private static SolutionDayFour Init2()
+        [Fact]
+        public void GetSecondResultTest1()
         {
+            //Given
             string[] array =
             {
                 "eyr:1972 cid:100",
@@ -106,7 +67,18 @@ namespace ConsoleApp.UnitTests.Solutions
                 "",
                 "iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719"
             };
-            var solution = SolutionDayFour.FromArray(array);
+            var solution = Init(array);
+
+            //When
+            var result = solution.SolvePartTwo();
+
+            //Then
+            Assert.Equal(4, result);
+        }
+
+        private static SolutionBase Init(string[] array)
+        {
+            var solution = SolutionBase.CreateDayFourFrom(array);
             return solution;
         }
     }
